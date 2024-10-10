@@ -25,6 +25,7 @@ body {
 }
 
 .piece {
+    margin-top: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,10 +37,19 @@ body {
 }
 
 .claro {
-    background-color: #eaeaea;
+    background-color: #b3a5a5;
 
 }
 
 .escuro {
     background-color: #968f96;
+}
+
+.pecas-escuras {
+    fill: #363636
+}
+
+.pecas-claras {
+    fill: #ffffff
+
 }

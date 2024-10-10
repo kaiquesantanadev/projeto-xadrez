@@ -15,7 +15,7 @@ const startPieces = [
 
 function criarTabuleiro() {
     startPieces.forEach((peca, i) => {
-        const quadrado =document.createElement('div')
+        const quadrado = document.createElement('div')
         quadrado.setAttribute('quadrado-id', i)
         quadrado.innerHTML = peca
         quadrado.classList.add('quadrado')
@@ -26,6 +26,16 @@ function criarTabuleiro() {
             quadrado.classList.add(i % 2 === 0 ? 'escuro' : 'claro')
         }
         tabuleiro.append(quadrado)
+
+        if (i <= 15) {
+            quadrado.firstChild.firstChild.classList.add('pecas-escuras')
+        } else if (i >= 48 ) {
+            quadrado.firstChild.firstChild.classList.add('pecas-claras')
+        }
+
+
+        
+
     })
 }
 
