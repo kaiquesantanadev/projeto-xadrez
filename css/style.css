@@ -1,0 +1,45 @@
+body {
+    background-color: #b59d9d;
+}
+
+.conteudo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+#gameboard {
+    width: 600px;
+    height: 600px;
+    background-color: black;
+    display: flex;
+    flex-wrap: wrap;
+    border: 6px solid black;
+}
+
+.quadrado svg {
+    height: 50px;
+    width: 50px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.piece {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quadrado {
+    height: 75px;
+    width: 75px;
+}
+
+.claro {
+    background-color: #eaeaea;
+
+}
+
+.escuro {
+    background-color: #968f96;
+}
