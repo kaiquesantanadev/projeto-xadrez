@@ -24,7 +24,7 @@ Siga os passos abaixo para rodar o projeto localmente utilizando **Git** e **Doc
 Primeiro, você precisará clonar o repositório para a sua máquina local. Abra o terminal e execute o seguinte comando:
 
 ```bash
-git clone https://github.com/kaiquevieira/projetoxadrez.git
+git clone https://github.com/kaiquesantanadev/projetoxadrez.git
 ```
 
 ### 2. Rodar com Docker
@@ -47,7 +47,7 @@ docker run -d -p 8080:80 projetoxadrez:latest
 
 ### 3. Jogar 
 
-Uma vez que o container esteja rodando, é só abrir o link do localhost no browser na pporta 8080 (ou na que você substituiu caso tenha feito).
+Uma vez que o container esteja rodando, é só abrir o link do localhost no browser na porta 8080 (ou na que você substituiu caso tenha feito).
 
 ```bash
 http://localhost:8080
