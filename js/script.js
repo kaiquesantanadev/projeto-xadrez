@@ -88,7 +88,7 @@ function reverseIds() {
 
 function revertIds() {
     const allQuadrados = document.querySelectorAll('.quadrado')
-    allQuadrados.forEach((quadrado, i) => { 
+    allQuadrados.forEach((quadrado, i) => {
         quadrado.setAttribute('quadrado-id', (tamanho * tamanho - 1) - i)  // Atribui IDs de 63 a 0 para a perspectiva branca
     })
 }
@@ -104,17 +104,17 @@ function dragDrop(e) {
     e.stopPropagation()
     const valid = checaValido(e.target)
     const vezCorreta = draggedElement.firstChild.classList.contains(vezJogador) // verifica se a peça mexida tem a classe correta, ou seja vez do jogador black deve mexer uma peça que contem a classe black
-    const vezOponente = vezJogador === "white" ? "black": "white";
+    const vezOponente = vezJogador === "white" ? "black" : "white";
     const temPeca = e.target.classList.contains('piece') // verifica se a casa atual possui alguma peça nela
     const temPecaOponente = e.target.firstChild?.classList.contains(vezOponente)
-    
+
     if (vezCorreta) {
         if (temPecaOponente && valid) { // movimentacao pra uma casa que tem oponente
-              e.target.parentNode.append(draggedElement) // colocando na casa dropada a peça que foi arrastada
-              e.target.remove()
-              audioMovimento.play()
-              mudarVez()
-              return
+            e.target.parentNode.append(draggedElement) // colocando na casa dropada a peça que foi arrastada
+            e.target.remove()
+            audioMovimento.play()
+            mudarVez()
+            return
 
         }
         if (temPeca && !temPecaOponente) { // verifica se a peça que foi jogada foi jogada pra um local que existe uma peça e que é do proprio time
@@ -130,11 +130,11 @@ function dragDrop(e) {
             return
         }
     } else {
-         audioNegacao.play();
-         infoDisplay.textContent = `Não é possivel fazer esse movimento! É a vez de ${vezJogador}`
+        audioNegacao.play();
+        infoDisplay.textContent = `Não é possivel fazer esse movimento! É a vez de ${vezJogador}`
         setTimeout(() => infoDisplay.textContent = '', 2500)
     }
-    
+
 }
 
 function checaValido(target) {
@@ -144,11 +144,11 @@ function checaValido(target) {
     console.log(Number(targetId))
     console.log(startId - tamanho - 1)
     console.log(document.querySelector(`[quadrado-id="${startId - tamanho - 1}"]`).firstChild)
-    switch(peca) {
+    switch (peca) {
         case 'peao':
             const linhaInicial = [48, 49, 50, 51, 52, 53, 54, 55] // id dos quadrados onde o peao nasce no comeco da partida
             if (
-                linhaInicial.includes(startId) && startId - tamanho * 2 === targetId  || // verifica se o destino é a mesma caasa a 2 linhas a frente para jogadas iniciais de peao
+                linhaInicial.includes(startId) && startId - tamanho * 2 === targetId || // verifica se o destino é a mesma caasa a 2 linhas a frente para jogadas iniciais de peao
                 startId - tamanho === targetId || // movimenta 1 pra frente
                 startId - tamanho - 1 === Number(targetId) && document.querySelector(`[quadrado-id="${startId - tamanho - 1}"]`).firstChild || // diagonal esquerda
                 startId - tamanho + 1 === Number(targetId) && document.querySelector(`[quadrado-id="${startId - tamanho + 1}"]`).firstChild // diagonal direita
@@ -158,7 +158,22 @@ function checaValido(target) {
             } else {
                 audioNegacao.play()
             }
-
+            break;
+        case 'cavalo':
+            if (
+                startId - tamanho * 2 - 1 === Number(targetId) ||
+                startId - tamanho * 2 + 1 === Number(targetId) ||
+                startId - tamanho * 1 - 2 === Number(targetId) ||
+                startId - tamanho * 1 + 2 === Number(targetId) ||
+                startId + tamanho * 2 - 1 === Number(targetId) ||
+                startId + tamanho * 2 + 1 === Number(targetId) ||
+                startId + tamanho * 1 - 2 === Number(targetId) ||
+                startId + tamanho * 1 + 2 === Number(targetId)
+            ) {
+                return true
+            } else {
+                audioNegacao.play()
+            }
     }
 
 }
