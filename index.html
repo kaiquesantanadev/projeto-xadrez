@@ -5,13 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="img/chess.png" type="image/x-icon">
     <title>Projeto Xadrez Kaique</title>
 </head>
 
 <body>
-    <div id="gameboard"></div>
-    <p>É a vez de: <span id="player"></span></p>
-    <p id="info-display"></p>
+    <div class="jogo">
+        <div id="gameboard"></div>
+        <p id="info-display"></p>
+        <p>É a vez de: <span id="player"></span></p>
+    </div>
+    <div class="adicionais">
+        <button class="adicional" id="desistir">Desistir</button>
+        <button class="adicional" id="empate">Propor empate</button>
+    </div>
     <script src="js/pecas.js"></script>
     <script src="js/script.js"></script>
 </body>

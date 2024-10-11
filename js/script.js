@@ -71,16 +71,17 @@ function dragOver(e) {
 
 function dragDrop(e) {
     e.stopPropagation()
-    console.log(draggedElement)
+    const valid = checaValido(e.target)
     const vezCorreta = draggedElement.firstChild.classList.contains(vezJogador) // verifica se a peça mexida tem a classe correta, ou seja vez do jogador black deve mexer uma peça que contem a classe black
     const vezOponente = vezJogador === "white" ? "black": "white";
     const temPeca = e.target.classList.contains('piece') // verifica se a casa atual possui alguma peça nela
     const temPecaOponente = e.target.firstChild?.classList.contains(vezOponente)
 
     if (vezCorreta) {
-         if (temPecaOponente) {
+         if (temPecaOponente) { // movimentacao pra uma casa que tem oponente
               e.target.parentNode.append(draggedElement) // colocando na casa dropada a peça que foi arrastada
               e.target.remove()
+              audioMovimento.play()
               mudarVez()
               return
 
@@ -91,21 +92,36 @@ function dragDrop(e) {
             setTimeout(() => infoDisplay.textContent = '', 2500)
             return
         }
+        if (valid) { // movimentacao pra uma casa que nao tem oponente
+            e.target.append(draggedElement)
+            audioMovimento.play()
+            mudarVez()
+            return
+        }
     } else {
-        audioNegacao.play();
-        infoDisplay.textContent = `Não é possivel fazer esse movimento! É a vez de ${vezJogador}`
+         audioNegacao.play();
+        infoDisplay.textContent = `Não é o seu turno! É a vez de ${vezJogador}`
         setTimeout(() => infoDisplay.textContent = '', 2500)
     }
 
 }
 
+function checaValido(target) {
+    console.log(target)
+}
+
+
+
+
+
+
+
 function mudarVez() {
     if (vezJogador === 'white') {
-        reverseIds()
+        revertIds()
         vezJogador = "black"
         jogadorDaVez.textContent = "black"
     } else {
-        revertIds()
         vezJogador = "white"
         jogadorDaVez.textContent = "white"
     }
@@ -114,11 +130,13 @@ function mudarVez() {
 function reverseIds() {
     const allQuadrados = document.querySelectorAll('.quadrado')
     allQuadrados.forEach((quadrado, i) => {
-        quadrado.setAttribute('quadrado-id', (tamanho * tamanho - 1) - i)
+        quadrado.setAttribute('quadrado-id', i)  // Atribui IDs de 0 a 63 para a perspectiva preta
     })
 }
 
 function revertIds() {
     const allQuadrados = document.querySelectorAll('.quadrado')
-    allQuadrados.forEach((quadrado, i) => { quadrado.setAttribute('quadrado-id', i) })
+    allQuadrados.forEach((quadrado, i) => { 
+        quadrado.setAttribute('quadrado-id', (tamanho * tamanho - 1) - i)  // Atribui IDs de 63 a 0 para a perspectiva branca
+    })
 }
