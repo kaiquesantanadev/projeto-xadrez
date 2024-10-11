@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Updock&display=swap');
+
 body {
     background-color: #b59d9d;
     display: flex;
@@ -16,6 +18,12 @@ body {
     padding: 10px;
     border-radius: 2px;
     cursor: pointer;
+}
+
+#titulo {
+    font-family: "Pacifico", cursive;
+    font-weight: 400;
+    font-style: normal;
 }
 
 #desistir {
@@ -79,6 +87,10 @@ path {
 
 .escuro {
     background-color: #968f96;
+}
+
+.selecionado {
+    background-color: red;
 }
 
 .black {
