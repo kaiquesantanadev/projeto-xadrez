@@ -8,6 +8,7 @@ body {
     background-color: black;
     display: flex;
     flex-wrap: wrap;
+    border: 2px solid black;
 }
 
 .quadrado {
@@ -35,15 +36,6 @@ path {
 }
 
 .claro {
-    background-color: #eaeaea;
-
-}
-
-.escuro {
-    background-color: #968f96;
-}
-
-.claro {
     background-color: #b3a5a5;
 
 }
@@ -52,11 +44,11 @@ path {
     background-color: #968f96;
 }
 
-.pecas-escuras {
+.black {
     fill: #363636
 }
 
-.pecas-claras {
+.white {
     fill: #ffffff
 
 }
