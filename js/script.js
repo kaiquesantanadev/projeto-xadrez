@@ -104,7 +104,6 @@ function dragDrop(e) {
 
     if (vezCorreta) {
         if (temPecaOponente && valid) { // movimentacao pra uma casa que tem oponente
-            console.log('oi')
             e.target.parentNode.append(draggedElement) // colocando na casa dropada a peça que foi arrastada
             e.target.remove()
             audioMovimento.play()
@@ -125,10 +124,6 @@ function dragDrop(e) {
             return
         }
     } else {
-        console.log(vezCorreta)
-        console.log(vezJogador)
-        console.log(vezOponente)
-        console.log(temPecaOponente)
         audioNegacao.play();
         infoDisplay.textContent = `Não é possivel fazer esse movimento! É a vez de ${vezJogador}`
         setTimeout(() => infoDisplay.textContent = '', 2500)
@@ -179,7 +174,7 @@ function checaValido(target) {
                 startId - tamanho * 4 - 4 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho - 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 2 - 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 3 - 3}"]`).firstChild ||
                 startId - tamanho * 5 - 5 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho - 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 2 - 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 3 - 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 4 - 4}"]`).firstChild ||
                 startId - tamanho * 6 - 6 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho - 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 2 - 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 3 - 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 4 - 4}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 5 - 5}"]`).firstChild ||
-                startId - tamanho * 7 - 7 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho - 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 2 - 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 3 - 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 4 - 4}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 5 - 5}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 6 - 6}"]`).firstChild    ||             
+                startId - tamanho * 7 - 7 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho - 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 2 - 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 3 - 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 4 - 4}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 5 - 5}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 6 - 6}"]`).firstChild ||
 
                 startId + tamanho * 1 + 1 === Number(targetId) ||
                 startId + tamanho * 2 + 2 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + tamanho + 1}"]`).firstChild ||
@@ -188,7 +183,7 @@ function checaValido(target) {
                 startId + tamanho * 5 + 5 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + tamanho + 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 2 + 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 3 + 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 4 + 4}"]`).firstChild ||
                 startId + tamanho * 6 + 6 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + tamanho + 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 2 + 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 3 + 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 4 + 4}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 5 + 5}"]`).firstChild ||
                 startId + tamanho * 7 + 7 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + tamanho + 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 2 + 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 3 + 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 4 + 4}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 5 + 5}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 6 + 6}"]`).firstChild ||
-                
+
                 startId + tamanho * 1 - 1 === Number(targetId) ||
                 startId + tamanho * 2 - 2 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + tamanho - 1}"]`).firstChild ||
                 startId + tamanho * 3 - 3 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + tamanho - 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 2 - 2}"]`).firstChild ||
@@ -196,14 +191,14 @@ function checaValido(target) {
                 startId + tamanho * 5 - 5 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + tamanho - 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 2 - 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 3 - 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 4 - 4}"]`).firstChild ||
                 startId + tamanho * 6 - 6 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + tamanho - 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 2 - 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 3 - 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 4 - 4}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 5 - 5}"]`).firstChild ||
                 startId + tamanho * 7 - 7 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + tamanho - 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 2 - 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 3 - 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 4 - 4}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 5 - 5}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 6 - 6}"]`).firstChild ||
-                
+
                 startId - tamanho * 1 + 1 === Number(targetId) ||
                 startId - tamanho * 2 + 2 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho + 1}"]`).firstChild ||
                 startId - tamanho * 3 + 3 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho + 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 2 + 2}"]`).firstChild ||
                 startId - tamanho * 4 + 4 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho + 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 2 + 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 3 + 3}"]`).firstChild ||
                 startId - tamanho * 5 + 5 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho + 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 2 + 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 3 + 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 4 + 4}"]`).firstChild ||
                 startId - tamanho * 6 + 6 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho + 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 2 + 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 3 + 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 4 + 4}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 5 + 5}"]`).firstChild ||
-                startId - tamanho * 7 + 7 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho + 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 2 + 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 3 + 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 4 + 4}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 5 + 5}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 6 + 6}"]`).firstChild 
+                startId - tamanho * 7 + 7 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho + 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 2 + 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 3 + 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 4 + 4}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 5 + 5}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 6 + 6}"]`).firstChild
 
 
             ) {
@@ -212,6 +207,140 @@ function checaValido(target) {
                 audioNegacao.play()
             }
             break;
+        case 'torre':
+            if
+                (
+                startId - tamanho === Number(targetId) ||
+                startId - tamanho * 2 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho}"]`).firstChild ||
+                startId - tamanho * 3 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 2}"]`).firstChild ||
+                startId - tamanho * 4 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 3}"]`).firstChild ||
+                startId - tamanho * 5 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 4}"]`).firstChild ||
+                startId - tamanho * 6 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 4}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 5}"]`).firstChild ||
+                startId - tamanho * 7 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 4}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 5}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 6}"]`).firstChild ||
+
+                startId + tamanho === Number(targetId) ||
+                startId + tamanho * 2 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + tamanho}"]`).firstChild ||
+                startId + tamanho * 3 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + tamanho}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 2}"]`).firstChild ||
+                startId + tamanho * 4 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + tamanho}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 3}"]`).firstChild ||
+                startId + tamanho * 5 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + tamanho}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 4}"]`).firstChild ||
+                startId + tamanho * 6 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + tamanho}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 4}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 5}"]`).firstChild ||
+                startId + tamanho * 7 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + tamanho}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 4}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 5}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 6}"]`).firstChild ||
+
+                startId + 1 === Number(targetId) ||
+                startId + 2 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + 1}"]`).firstChild ||
+                startId + 3 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + 2}"]`).firstChild ||
+                startId + 4 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + 3}"]`).firstChild ||
+                startId + 5 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + 4}"]`).firstChild ||
+                startId + 6 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + 4}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + 5}"]`).firstChild ||
+                startId + 7 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + 4}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + 5}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + 6}"]`).firstChild ||
+
+                startId - 1 === Number(targetId) ||
+                startId - 2 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - 1}"]`).firstChild ||
+                startId - 3 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - 2}"]`).firstChild ||
+                startId - 4 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - 3}"]`).firstChild ||
+                startId - 5 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - 4}"]`).firstChild ||
+                startId - 6 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - 4}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - 5}"]`).firstChild ||
+                startId - 7 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - 4}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - 5}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - 6}"]`).firstChild
+            ) {
+                return true
+            } else {
+                audioNegacao.play()
+            }
+            break;
+        case "rainha":
+            if (
+
+                // movimentos do bispo
+                startId - tamanho * 1 - 1 === Number(targetId) ||
+                startId - tamanho * 2 - 2 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho - 1}"]`).firstChild ||
+                startId - tamanho * 3 - 3 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho - 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 2 - 2}"]`).firstChild ||
+                startId - tamanho * 4 - 4 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho - 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 2 - 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 3 - 3}"]`).firstChild ||
+                startId - tamanho * 5 - 5 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho - 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 2 - 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 3 - 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 4 - 4}"]`).firstChild ||
+                startId - tamanho * 6 - 6 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho - 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 2 - 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 3 - 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 4 - 4}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 5 - 5}"]`).firstChild ||
+                startId - tamanho * 7 - 7 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho - 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 2 - 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 3 - 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 4 - 4}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 5 - 5}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 6 - 6}"]`).firstChild ||
+
+                startId + tamanho * 1 + 1 === Number(targetId) ||
+                startId + tamanho * 2 + 2 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + tamanho + 1}"]`).firstChild ||
+                startId + tamanho * 3 + 3 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + tamanho + 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 2 + 2}"]`).firstChild ||
+                startId + tamanho * 4 + 4 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + tamanho + 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 2 + 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 3 + 3}"]`).firstChild ||
+                startId + tamanho * 5 + 5 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + tamanho + 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 2 + 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 3 + 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 4 + 4}"]`).firstChild ||
+                startId + tamanho * 6 + 6 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + tamanho + 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 2 + 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 3 + 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 4 + 4}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 5 + 5}"]`).firstChild ||
+                startId + tamanho * 7 + 7 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + tamanho + 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 2 + 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 3 + 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 4 + 4}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 5 + 5}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 6 + 6}"]`).firstChild ||
+
+                startId + tamanho * 1 - 1 === Number(targetId) ||
+                startId + tamanho * 2 - 2 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + tamanho - 1}"]`).firstChild ||
+                startId + tamanho * 3 - 3 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + tamanho - 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 2 - 2}"]`).firstChild ||
+                startId + tamanho * 4 - 4 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + tamanho - 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 2 - 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 3 - 3}"]`).firstChild ||
+                startId + tamanho * 5 - 5 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + tamanho - 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 2 - 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 3 - 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 4 - 4}"]`).firstChild ||
+                startId + tamanho * 6 - 6 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + tamanho - 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 2 - 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 3 - 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 4 - 4}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 5 - 5}"]`).firstChild ||
+                startId + tamanho * 7 - 7 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + tamanho - 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 2 - 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 3 - 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 4 - 4}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 5 - 5}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 6 - 6}"]`).firstChild ||
+
+                startId - tamanho * 1 + 1 === Number(targetId) ||
+                startId - tamanho * 2 + 2 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho + 1}"]`).firstChild ||
+                startId - tamanho * 3 + 3 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho + 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 2 + 2}"]`).firstChild ||
+                startId - tamanho * 4 + 4 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho + 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 2 + 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 3 + 3}"]`).firstChild ||
+                startId - tamanho * 5 + 5 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho + 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 2 + 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 3 + 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 4 + 4}"]`).firstChild ||
+                startId - tamanho * 6 + 6 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho + 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 2 + 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 3 + 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 4 + 4}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 5 + 5}"]`).firstChild ||
+                startId - tamanho * 7 + 7 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho + 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 2 + 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 3 + 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 4 + 4}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 5 + 5}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 6 + 6}"]`).firstChild ||
+
+                // movimentos de torre
+
+                startId - tamanho === Number(targetId) ||
+                startId - tamanho * 2 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho}"]`).firstChild ||
+                startId - tamanho * 3 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 2}"]`).firstChild ||
+                startId - tamanho * 4 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 3}"]`).firstChild ||
+                startId - tamanho * 5 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 4}"]`).firstChild ||
+                startId - tamanho * 6 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 4}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 5}"]`).firstChild ||
+                startId - tamanho * 7 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 4}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 5}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - tamanho * 6}"]`).firstChild ||
+
+                startId + tamanho === Number(targetId) ||
+                startId + tamanho * 2 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + tamanho}"]`).firstChild ||
+                startId + tamanho * 3 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + tamanho}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 2}"]`).firstChild ||
+                startId + tamanho * 4 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + tamanho}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 3}"]`).firstChild ||
+                startId + tamanho * 5 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + tamanho}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 4}"]`).firstChild ||
+                startId + tamanho * 6 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + tamanho}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 4}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 5}"]`).firstChild ||
+                startId + tamanho * 7 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + tamanho}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 4}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 5}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + tamanho * 6}"]`).firstChild ||
+
+                startId + 1 === Number(targetId) ||
+                startId + 2 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + 1}"]`).firstChild ||
+                startId + 3 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + 2}"]`).firstChild ||
+                startId + 4 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + 3}"]`).firstChild ||
+                startId + 5 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + 4}"]`).firstChild ||
+                startId + 6 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + 4}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + 5}"]`).firstChild ||
+                startId + 7 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId + 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + 4}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + 5}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId + 6}"]`).firstChild ||
+
+                startId - 1 === Number(targetId) ||
+                startId - 2 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - 1}"]`).firstChild ||
+                startId - 3 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - 2}"]`).firstChild ||
+                startId - 4 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - 3}"]`).firstChild ||
+                startId - 5 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - 4}"]`).firstChild ||
+                startId - 6 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - 4}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - 5}"]`).firstChild ||
+                startId - 7 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - 1}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - 2}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - 3}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - 4}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - 5}"]`).firstChild && !document.querySelector(`[quadrado-id="${startId - 6}"]`).firstChild
+            ) {
+                return true
+            } else {
+                audioNegacao.play()
+            }
+            break;
+        case 'rei':
+            if (
+                startId - 1 === Number(targetId) ||
+                startId + 1 === Number(targetId) ||
+                startId + tamanho === Number(targetId) ||
+                startId + tamanho + 1 === Number(targetId) ||
+                startId + tamanho - 1 === Number(targetId) ||
+                startId - tamanho === Number(targetId) ||
+                startId - tamanho + 1 === Number(targetId) ||
+                startId - tamanho - 1 === Number(targetId) 
+            ) {
+                return true
+            } else {
+                audioNegacao.play()
+            }
+        default:
+            audioNegacao.play
+            break;
+
     }
 
 }
