@@ -96,7 +96,7 @@ function dragOver(e) {
 
 function dragDrop(e) {
     e.stopPropagation(); // Evita bugs do drag and drop não ser tratado no lugar específico
-    const valid = checaValido(e.target); // Ignorando checaValido conforme solicitado
+    const valid = checaValido(e.target)
     const vezCorreta = draggedElement.firstChild.classList.contains(vezJogador); // Verifica se a peça mexida tem a classe correta
     const vezOponente = vezJogador === "white" ? "black" : "white";
     const temPeca = e.target.classList.contains('piece'); // Verifica se a casa atual possui alguma peça nela
@@ -106,7 +106,6 @@ function dragDrop(e) {
     const origem = document.querySelector(`[quadrado-id='${posicaoInicialId}']`);
 
     if (vezCorreta) {
-
         if (temPecaOponente && valid) {
             e.target.parentNode.append(draggedElement); // Colocando na casa dropada a peça que foi arrastada
             if (draggedPieceId === 'rei' && isKingInCheck(vezJogador)) {
@@ -115,8 +114,6 @@ function dragDrop(e) {
                 return;
             }
             e.target.remove();
-            
-
             audioMovimento.play();
             if (isKingInCheck(vezOponente)) {
                 alert(`Xeque no rei ${vezOponente}!`);
@@ -124,16 +121,12 @@ function dragDrop(e) {
             mudarVez();
             return;
         }
-
-
         if (temPeca && !temPecaOponente) { // Verifica se a peça que foi jogada foi jogada pra um local que existe uma peça e que é do próprio time
             audioNegacao.play();
             infoDisplay.textContent = "Não é possível eliminar sua própria peça!";
             setTimeout(() => infoDisplay.textContent = '', 2500);
             return;
         }
-
-
         if (valid) { // Movimentação pra uma casa que não tem oponente
             e.target.append(draggedElement);
             if (draggedPieceId === 'rei' && isKingInCheck(vezJogador, e.target.getAttribute('quadrado-id'))) {
@@ -148,8 +141,6 @@ function dragDrop(e) {
             mudarVez();
             return;
         }
-
-        
     } else {
         audioNegacao.play();
         infoDisplay.textContent = `Não é possível fazer esse movimento! É a vez de ${vezJogador}`;

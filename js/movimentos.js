@@ -137,8 +137,13 @@ function isKingInCheck(color) {
         Number(posicaoRei) + tamanho * 1 + 2
     ];
 
+    const peaoMoves = [Number(posicaoRei) - tamanho - 1, Number(posicaoRei) - tamanho + 1] 
+
     return cavaleiroMoves.some(move => {
         const targetSquare = document.querySelector(`[quadrado-id="${move}"]`);
         return targetSquare && targetSquare.firstChild && targetSquare.firstChild.id === 'cavalo' && targetSquare.firstChild.firstChild.classList.contains(opponentColor);
-    });
+    }) || peaoMoves.some(move => {
+        const targetSquare = document.querySelector(`[quadrado-id="${move}"]`);
+        return targetSquare && targetSquare.firstChild && targetSquare.firstChild.id === 'peao' && targetSquare.firstChild.firstChild.classList.contains(opponentColor);
+    })
 }
