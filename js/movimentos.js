@@ -122,3 +122,23 @@ function movimentoRei(startId, targetId, tamanho) {
     }
     return false
 }
+
+function isKingInCheck(color) {
+    const posicaoRei = Array.from(document.querySelectorAll('.piece')).find(peca => peca.id === 'rei' && peca.firstChild.classList.contains(color)).parentNode.getAttribute('quadrado-id');
+    const opponentColor = color === 'white' ? 'black' : 'white';
+    const cavaleiroMoves = [
+        Number(posicaoRei) - tamanho * 2 - 1,
+        Number(posicaoRei) - tamanho * 2 + 1,
+        Number(posicaoRei) - tamanho * 1 - 2,
+        Number(posicaoRei) - tamanho * 1 + 2,
+        Number(posicaoRei) + tamanho * 2 - 1,
+        Number(posicaoRei) + tamanho * 2 + 1,
+        Number(posicaoRei) + tamanho * 1 - 2,
+        Number(posicaoRei) + tamanho * 1 + 2
+    ];
+
+    return cavaleiroMoves.some(move => {
+        const targetSquare = document.querySelector(`[quadrado-id="${move}"]`);
+        return targetSquare && targetSquare.firstChild && targetSquare.firstChild.id === 'cavalo' && targetSquare.firstChild.firstChild.classList.contains(opponentColor);
+    });
+}
