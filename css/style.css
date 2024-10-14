@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Updock&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Pacifico&family=Updock&display=swap');
 
 body {
     background-color: #b59d9d;
@@ -6,12 +6,34 @@ body {
     justify-content: center;
     align-items: center;
     gap: 10em;
+    font-family: "Cabin", sans-serif;
+}
+
+h1, h2 {
+    margin: 0;
+    
+}
+
+h1 {
+    font-size: 3rem;
+    color: #333;
+}
+
+h2 {
+    font-size: 1.5rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.main {
+    display: none;
 }
 
 .adicionais {
     display: flex;
     flex-direction: column;
     gap: 1em;
+    width: 200px; 
 }
 
 .adicional {
@@ -20,11 +42,10 @@ body {
     cursor: pointer;
 }
 
-#titulo {
-    font-family: "Pacifico", cursive;
-    font-weight: 400;
-    font-style: normal;
+#player {
+    height: 50px;
 }
+
 
 #desistir {
     border: 1px solid red;
@@ -70,6 +91,14 @@ body {
     z-index: -9;
 }
 
+#info-display {
+    height: 20px; /* ou ajuste conforme necessário */
+}
+
+
+#info-display.hidden {
+    opacity: 0;
+}
 path {
     position: relative;
     z-index: -10
@@ -101,3 +130,4 @@ path {
     fill: #ffffff
 
 }
+

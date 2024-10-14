@@ -1,12 +1,23 @@
-let posicaoInicialId;
-let draggedElement
+const urlParams = new URLSearchParams(window.location.search);
+const jogador1 = urlParams.get('jogador1') || 'Jogador 1';
+const jogador2 = urlParams.get('jogador2') || 'Jogador 2';
+
+const jogadorBranco = Math.random() < 0.5 ? jogador1 : jogador2;
+const jogadorPreto = jogadorBranco === jogador1 ? jogador2 : jogador1;
+
+
+const jogadores = {
+    white: jogadorBranco,
+    black: jogadorPreto
+};
+
 
 const tabuleiro = document.querySelector('#gameboard')
 const jogadorDaVez = document.querySelector('#player')
 const infoDisplay = document.querySelector('#info-display')
 const tamanho = 8
 let vezJogador = 'white'
-jogadorDaVez.textContent = vezJogador
+jogadorDaVez.textContent = jogadores[vezJogador]
 const tabuleiroMatriz = [
     torre, cavalo, bispo, rainha, rei, bispo, cavalo, torre,
     peao, peao, peao, peao, peao, peao, peao, peao,
@@ -17,6 +28,9 @@ const tabuleiroMatriz = [
     peao, peao, peao, peao, peao, peao, peao, peao,
     torre, cavalo, bispo, rainha, rei, bispo, cavalo, torre,
 ]
+
+let posicaoInicialId;
+let draggedElement
 
 function criarTabuleiro() {
     tabuleiroMatriz.forEach((peca, i) => {
@@ -62,12 +76,12 @@ allQuadrados.forEach((quadrado) => {
 function mudarVez() {
     if (vezJogador === 'white') {
         revertIds()
-        vezJogador = "black"
-        jogadorDaVez.textContent = "black"
+        vezJogador = 'black'
+        jogadorDaVez.textContent = jogadores[vezJogador];
     } else {
         reverseIds()
         vezJogador = "white"
-        jogadorDaVez.textContent = "white"
+        jogadorDaVez.textContent = jogadores[vezJogador];
     }
 }
 
@@ -116,7 +130,7 @@ function dragDrop(e) {
             e.target.remove();
             audioMovimento.play();
             if (isKingInCheck(vezOponente)) {
-                alert(`Xeque no rei ${vezOponente}!`);
+                alert(`Xeque no rei de ${jogadores[vezOponente]}!`);
             }
             mudarVez();
             return;
@@ -136,14 +150,14 @@ function dragDrop(e) {
             }
             audioMovimento.play();
             if (isKingInCheck(vezOponente)) {
-                alert(`Xeque no rei ${vezOponente}!`);
+                alert(`Xeque no rei de ${jogadores[vezOponente]}!`);
             }
             mudarVez();
             return;
         }
     } else {
         audioNegacao.play();
-        infoDisplay.textContent = `Não é possível fazer esse movimento! É a vez de ${vezJogador}`;
+        infoDisplay.textContent = `Não é possível fazer esse movimento! É a vez de ${jogadores[vezJogador]}`;
         setTimeout(() => infoDisplay.textContent = '', 2500);
     }
 }
