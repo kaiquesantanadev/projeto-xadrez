@@ -2,17 +2,11 @@ const urlParams = new URLSearchParams(window.location.search);
 let jogador1 = urlParams.get('jogador1') || 'Jogador 1';
 let jogador2 = urlParams.get('jogador2') || 'Jogador 2';
 
-if (jogador1.length > 12) {
-    jogador1 = 'Jogador 1'
-}
+if (jogador1.length > 12) jogador1 = 'Jogador 1'
+if (jogador2.length > 12) jogador2 = 'Jogador 2'
 
-if (jogador2.length > 12) {
-    jogador2 = 'Jogador 2'
-}
 const jogadorBranco = Math.random() < 0.5 ? jogador1 : jogador2;
 const jogadorPreto = jogadorBranco === jogador1 ? jogador2 : jogador1;
-
-
 const jogadores = {
     white: jogadorBranco,
     black: jogadorPreto
@@ -22,6 +16,8 @@ const jogadores = {
 const tabuleiro = document.querySelector('#gameboard')
 const jogadorDaVez = document.querySelector('#player')
 const infoDisplay = document.querySelector('#info-display')
+const botaoDesistir = document.querySelector('#desistir')
+const botaoEmpatar = document.querySelector('#empate')
 const tamanho = 8
 let vezJogador = 'white'
 jogadorDaVez.textContent = jogadores[vezJogador]
@@ -78,8 +74,6 @@ allQuadrados.forEach((quadrado) => {
     quadrado.addEventListener('drop', dragDrop)
 })
 
-
-
 function mudarVez() {
     if (vezJogador === 'white') {
         revertIds()
@@ -128,7 +122,6 @@ function dragDrop(e) {
 
     if (vezCorreta) {
         if (temPecaOponente && valid) {
-            console.log('oi')
             e.target.parentNode.append(draggedElement); // Colocando na casa dropada a peça que foi arrastada
             if (draggedPieceId === 'rei' && isKingInCheck(vezJogador)) {
                 alert('Não é possível mover o rei para essa posição, ele ficaria em xeque!');
@@ -251,22 +244,25 @@ function checaVitoria() {
 
 function checaVitoria() {
     const reis = Array.from(document.querySelectorAll('#rei'));
-    const infoDisplay = document.getElementById('info-display');
     const vitoriaDisplay = document.getElementById('vitoria-display');
+    const tituloInformacao = document.getElementById('titulo-informacao')
     const mensagemVencedor = document.getElementById('mensagem-vencedor');
     
     // Checa se o rei branco foi capturado
     if (!reis.some(rei => rei.firstChild.classList.contains('white'))) {
+        tituloInformacao.innerHTML = `Vitória!`;
         mensagemVencedor.innerHTML = `${jogadores.black} venceu!`;
-        vitoriaDisplay.style.display = 'flex';  // Exibe a mensagem de vitória
+        vitoriaDisplay.style.display = 'flex';  
         desabilitarPecas();
         return;
     }
     
     // Checa se o rei preto foi capturado
     if (!reis.some(rei => rei.firstChild.classList.contains('black'))) {
+        tituloInformacao.innerHTML = `Vitória!`;
+
         mensagemVencedor.innerHTML = `${jogadores.white} venceu!`;
-        vitoriaDisplay.style.display = 'flex';  // Exibe a mensagem de vitória
+        vitoriaDisplay.style.display = 'flex';
         desabilitarPecas();
         return;
     }
@@ -280,6 +276,42 @@ function desabilitarPecas() {
 }
 
 function reiniciarJogo() {
-    // Aqui você pode implementar o código para reiniciar o jogo, como resetar o tabuleiro.
-    window.location.reload();  // Recarrega a página para reiniciar o jogo
+    window.location.reload();  
+}
+
+
+botaoDesistir.addEventListener('click', desistirPartida) 
+botaoEmpatar.addEventListener('click', empatarPartida)
+
+function desistirPartida() {
+    const vitoriaDisplay = document.getElementById('vitoria-display');
+    const tituloInformacao = document.getElementById('titulo-informacao')
+    const mensagemVencedor = document.getElementById('mensagem-vencedor');
+    const vezOponente = vezJogador === "white" ? "black" : "white";
+    const confirmacaoDesistencia = window.confirm(`Tem certeza que deseja desistir da partida? Isso dará a vitória automaticamente para ${jogadores[vezOponente]}.`)
+
+    if (confirmacaoDesistencia === true) {
+        tituloInformacao.innerHTML = `Desistência!`;
+        mensagemVencedor.innerHTML = `${jogadores[vezJogador]} desistiu da partida, ${jogadores[vezOponente]} venceu!`;
+        vitoriaDisplay.style.display = 'flex';  
+        desabilitarPecas();
+    }
+}
+
+function empatarPartida() {
+    const vitoriaDisplay = document.getElementById('vitoria-display');
+    const tituloInformacao = document.getElementById('titulo-informacao')
+    const mensagemVencedor = document.getElementById('mensagem-vencedor');
+    const vezOponente = vezJogador === "white" ? "black" : "white";
+    const empateProposto = window.confirm(`${jogadores[vezJogador]}, tem certeza que deseja propor o empate da partida? Caso ${jogadores[vezOponente]} aceite, a partida finalizará sem vencedores.`)
+
+    if (empateProposto) {
+        const empateProposto = window.confirm(`${jogadores[vezOponente]}, ${jogadores[vezJogador]} te propôs um empate. Deseja aceitar? Caso aceite, a partida finalizará sem vencedores.`)
+        if (empateProposto) {
+            tituloInformacao.innerHTML = `Empate!`;
+            mensagemVencedor.innerHTML = `${jogadores[vezJogador]} e ${jogadores[vezOponente]}} concordaram em empatar a partida.`;
+            vitoriaDisplay.style.display = 'flex';  
+            desabilitarPecas();
+        }
+    }
 }
