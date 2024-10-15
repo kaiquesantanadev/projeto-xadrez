@@ -206,6 +206,17 @@ function isKingInCheck(color) {
         } else break;
     }
 
+    const reiMoves = [
+        Number(posicaoRei) - 1,
+        Number(posicaoRei) + 1,
+        Number(posicaoRei) + tamanho,
+        Number(posicaoRei) + tamanho + 1,
+        Number(posicaoRei) + tamanho - 1,
+        Number(posicaoRei) - tamanho,
+        Number(posicaoRei) - tamanho + 1,
+        Number(posicaoRei) - tamanho - 1
+    ];
+
     // cada some ve se o movimento resulta numa peça inimiga, ou seja, se o cavalomove resulta num cavalo inimigo e blabla
     return cavaloMoves.some(move => {
         const targetSquare = document.querySelector(`[quadrado-id="${move}"]`);
@@ -216,5 +227,9 @@ function isKingInCheck(color) {
     }) || torreMoves.some(move => {
         const targetSquare = document.querySelector(`[quadrado-id="${move}"]`);
         return targetSquare && targetSquare.firstChild && targetSquare.firstChild.id === 'torre' && targetSquare.firstChild.firstChild.classList.contains(opponentColor);
+    }) || reiMoves.some(move => {
+        const targetSquare = document.querySelector(`[quadrado-id="${move}"]`);
+        return targetSquare && targetSquare.firstChild && targetSquare.firstChild.id === 'rei' && targetSquare.firstChild.firstChild.classList.contains(opponentColor);
     });
+;
 }
