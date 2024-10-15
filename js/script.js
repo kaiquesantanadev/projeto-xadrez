@@ -129,7 +129,7 @@ function dragDrop(e) {
                 return;
             }
             e.target.remove();
-            audioMovimento.play();
+            audioCaptura.play();
             checaVitoria()
             if (isKingInCheck(vezOponente)) {
                 alert(`Xeque no rei de ${jogadores[vezOponente]}!`);
@@ -221,28 +221,6 @@ function checaValido(target) {
 }
 
 function checaVitoria() {
-    const reis = Array.from(document.querySelectorAll('#rei'))
-    console.log(reis)
-    if (!reis.some(rei => rei.firstChild.classList.contains('white'))) {
-        infoDisplay.innerHTML = `${jogadores.black} venceu a partida!`
-        const allQuadrados = document.querySelectorAll('.quadrado')
-        allQuadrados.forEach(quadrado => {
-            quadrado.firstChild?.setAttribute('draggable', false)
-        })
-        return
-    }
-    
-    if (!reis.some(rei => rei.firstChild.classList.contains('black'))) {
-        infoDisplay.innerHTML = `${jogadores.white} venceu a partida!`
-        const allQuadrados = document.querySelectorAll('.quadrado')
-        allQuadrados.forEach(quadrado => {
-            quadrado.firstChild?.setAttribute('draggable', false)
-        })
-        return
-    }
-}
-
-function checaVitoria() {
     const reis = Array.from(document.querySelectorAll('#rei'));
     const vitoriaDisplay = document.getElementById('vitoria-display');
     const tituloInformacao = document.getElementById('titulo-informacao')
@@ -254,6 +232,7 @@ function checaVitoria() {
         mensagemVencedor.innerHTML = `${jogadores.black} venceu!`;
         vitoriaDisplay.style.display = 'flex';  
         desabilitarPecas();
+        audioVitoria.play()
         return;
     }
     
@@ -264,6 +243,7 @@ function checaVitoria() {
         mensagemVencedor.innerHTML = `${jogadores.white} venceu!`;
         vitoriaDisplay.style.display = 'flex';
         desabilitarPecas();
+        audioVitoria.play()
         return;
     }
 }
@@ -291,6 +271,7 @@ function desistirPartida() {
     const confirmacaoDesistencia = window.confirm(`Tem certeza que deseja desistir da partida? Isso dará a vitória automaticamente para ${jogadores[vezOponente]}.`)
 
     if (confirmacaoDesistencia === true) {
+        audioDesistencia.play()
         tituloInformacao.innerHTML = `Desistência!`;
         mensagemVencedor.innerHTML = `${jogadores[vezJogador]} desistiu da partida, ${jogadores[vezOponente]} venceu!`;
         vitoriaDisplay.style.display = 'flex';  
