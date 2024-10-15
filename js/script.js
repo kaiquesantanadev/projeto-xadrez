@@ -365,6 +365,7 @@ function empatarPartida() {
     if (empateProposto) {
         const empateProposto = window.confirm(`${jogadores[vezOponente]}, ${jogadores[vezJogador]} te propôs um empate. Deseja aceitar? Caso aceite, a partida finalizará sem vencedores.`)
         if (empateProposto) {
+            audioEmpate.play();
             tituloInformacao.innerHTML = `Empate!`;
             mensagemVencedor.innerHTML = `${jogadores[vezJogador]} e ${jogadores[vezOponente]} concordaram em empatar a partida.`;
             vitoriaDisplay.style.display = 'flex';  

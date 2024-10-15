@@ -10,6 +10,7 @@ const audioMovimento = new Audio('../sound/movimento.mp3');
 const audioCaptura = new Audio('../sound/capture.mp3')
 const audioVitoria = new Audio('../sound/vitoria.mp3')
 const audioDesistencia = new Audio('../sound/desistencia.mp3')
+const audioEmpate = new Audio('../sound/empate.mp3')
 audioVitoria.volume = 0.2
 audioNegacao.volume = 0.2
 audioDesistencia.volume = 0.4
