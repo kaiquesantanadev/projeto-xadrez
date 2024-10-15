@@ -2,14 +2,45 @@ function movimentoPeao(startId, targetId, tamanho) {
     const linhaInicial = [48, 49, 50, 51, 52, 53, 54, 55];
 
     if (
-        (linhaInicial.includes(startId) && startId - tamanho * 2 === targetId) ||
-        (startId - tamanho === targetId) || // Movimenta 1 casa para frente
+        (linhaInicial.includes(startId) && startId - tamanho * 2 === Number(targetId)) && !document.querySelector(`[quadrado-id="${startId - tamanho}"]`).firstChild ||
+        (startId - tamanho === Number(targetId)) ||
         (startId - tamanho - 1 === Number(targetId) && document.querySelector(`[quadrado-id="${startId - tamanho - 1}"]`).firstChild) || // Movimento diagonal esquerda
         (startId - tamanho + 1 === Number(targetId) && document.querySelector(`[quadrado-id="${startId - tamanho + 1}"]`).firstChild) // Movimento diagonal direita
     ) {
+        promoverPeao(targetId);
         return true;
     }
     return false;
+}
+
+function promoverPeao(targetId) {
+    const linhaFinal = [0, 1, 2, 3, 4, 5, 6, 7];
+
+    if (linhaFinal.includes(Number(targetId))) {
+        while (true) {
+            const escolha = prompt("Escolha uma peça para promoção: dama, torre, cavalo, bispo");
+            switch (escolha) {
+                case 'dama':
+                    console.log('dama teste')
+                    break;
+                case 'torre':
+                    console.log('dama teste')
+                    break;
+
+                case 'cavalo':
+                    console.log('dama teste')
+                    break;
+
+                case 'bispo':
+                    console.log('dama teste')
+                    break;
+                default:
+                    alert('Insira uma peça válida.')
+                    continue;
+            }
+            break;
+        }
+    }
 }
 
 function movimentoCavalo(startId, targetId, tamanho) {
@@ -145,15 +176,6 @@ function isKingInCheck(color) {
         Number(posicaoRei) - tamanho + 1
     ];
 
-    // Movimentos da torre
-    const torreMoves = [];
-    for (let i = 1; i < 8; i++) {
-        torreMoves.push(Number(posicaoRei) + i * tamanho);  // para baixo
-        torreMoves.push(Number(posicaoRei) - i * tamanho);  // para cima
-        torreMoves.push(Number(posicaoRei) + i);  // para a direita
-        torreMoves.push(Number(posicaoRei) - i);  // para a esquerda
-    }
-
     // Verificação de xeque pelos movimentos de cavalo, peão e torre
     return cavaleiroMoves.some(move => {
         const targetSquare = document.querySelector(`[quadrado-id="${move}"]`);
@@ -161,8 +183,5 @@ function isKingInCheck(color) {
     }) || peaoMoves.some(move => {
         const targetSquare = document.querySelector(`[quadrado-id="${move}"]`);
         return targetSquare && targetSquare.firstChild && targetSquare.firstChild.id === 'peao' && targetSquare.firstChild.firstChild.classList.contains(opponentColor);
-    }) || torreMoves.some(move => {
-        const targetSquare = document.querySelector(`[quadrado-id="${move}"]`);
-        return targetSquare && targetSquare.firstChild && targetSquare.firstChild.id === 'torre' && targetSquare.firstChild.firstChild.classList.contains(opponentColor);
-    });
+    })
 }
