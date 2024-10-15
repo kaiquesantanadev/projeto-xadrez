@@ -1,7 +1,14 @@
 const urlParams = new URLSearchParams(window.location.search);
-const jogador1 = urlParams.get('jogador1') || 'Jogador 1';
-const jogador2 = urlParams.get('jogador2') || 'Jogador 2';
+let jogador1 = urlParams.get('jogador1') || 'Jogador 1';
+let jogador2 = urlParams.get('jogador2') || 'Jogador 2';
 
+if (jogador1.length > 12) {
+    jogador1 = 'Jogador 1'
+}
+
+if (jogador2.length > 12) {
+    jogador2 = 'Jogador 2'
+}
 const jogadorBranco = Math.random() < 0.5 ? jogador1 : jogador2;
 const jogadorPreto = jogadorBranco === jogador1 ? jogador2 : jogador1;
 
@@ -110,7 +117,7 @@ function dragOver(e) {
 
 function dragDrop(e) {
     e.stopPropagation(); // Evita bugs do drag and drop não ser tratado no lugar específico
-    const valid = checaValido(e.target)
+    const valid = checaValido(e.target);
     const vezCorreta = draggedElement.firstChild.classList.contains(vezJogador); // Verifica se a peça mexida tem a classe correta
     const vezOponente = vezJogador === "white" ? "black" : "white";
     const temPeca = e.target.classList.contains('piece'); // Verifica se a casa atual possui alguma peça nela
@@ -121,6 +128,7 @@ function dragDrop(e) {
 
     if (vezCorreta) {
         if (temPecaOponente && valid) {
+            console.log('oi')
             e.target.parentNode.append(draggedElement); // Colocando na casa dropada a peça que foi arrastada
             if (draggedPieceId === 'rei' && isKingInCheck(vezJogador)) {
                 alert('Não é possível mover o rei para essa posição, ele ficaria em xeque!');
@@ -129,6 +137,7 @@ function dragDrop(e) {
             }
             e.target.remove();
             audioMovimento.play();
+            checaVitoria()
             if (isKingInCheck(vezOponente)) {
                 alert(`Xeque no rei de ${jogadores[vezOponente]}!`);
             }
@@ -143,6 +152,7 @@ function dragDrop(e) {
         }
         if (valid) { // Movimentação pra uma casa que não tem oponente
             e.target.append(draggedElement);
+            checaVitoria()
             if (draggedPieceId === 'rei' && isKingInCheck(vezJogador, e.target.getAttribute('quadrado-id'))) {
                 alert('Não é possível mover o rei para essa posição, ele ficaria em xeque!');
                 origem.append(draggedElement); // Volta o rei para sua posição original
@@ -217,5 +227,59 @@ function checaValido(target) {
 
 }
 
+function checaVitoria() {
+    const reis = Array.from(document.querySelectorAll('#rei'))
+    console.log(reis)
+    if (!reis.some(rei => rei.firstChild.classList.contains('white'))) {
+        infoDisplay.innerHTML = `${jogadores.black} venceu a partida!`
+        const allQuadrados = document.querySelectorAll('.quadrado')
+        allQuadrados.forEach(quadrado => {
+            quadrado.firstChild?.setAttribute('draggable', false)
+        })
+        return
+    }
+    
+    if (!reis.some(rei => rei.firstChild.classList.contains('black'))) {
+        infoDisplay.innerHTML = `${jogadores.white} venceu a partida!`
+        const allQuadrados = document.querySelectorAll('.quadrado')
+        allQuadrados.forEach(quadrado => {
+            quadrado.firstChild?.setAttribute('draggable', false)
+        })
+        return
+    }
+}
 
+function checaVitoria() {
+    const reis = Array.from(document.querySelectorAll('#rei'));
+    const infoDisplay = document.getElementById('info-display');
+    const vitoriaDisplay = document.getElementById('vitoria-display');
+    const mensagemVencedor = document.getElementById('mensagem-vencedor');
+    
+    // Checa se o rei branco foi capturado
+    if (!reis.some(rei => rei.firstChild.classList.contains('white'))) {
+        mensagemVencedor.innerHTML = `${jogadores.black} venceu!`;
+        vitoriaDisplay.style.display = 'flex';  // Exibe a mensagem de vitória
+        desabilitarPecas();
+        return;
+    }
+    
+    // Checa se o rei preto foi capturado
+    if (!reis.some(rei => rei.firstChild.classList.contains('black'))) {
+        mensagemVencedor.innerHTML = `${jogadores.white} venceu!`;
+        vitoriaDisplay.style.display = 'flex';  // Exibe a mensagem de vitória
+        desabilitarPecas();
+        return;
+    }
+}
 
+function desabilitarPecas() {
+    const allQuadrados = document.querySelectorAll('.quadrado');
+    allQuadrados.forEach(quadrado => {
+        quadrado.firstChild?.setAttribute('draggable', false);  // Desativa as peças
+    });
+}
+
+function reiniciarJogo() {
+    // Aqui você pode implementar o código para reiniciar o jogo, como resetar o tabuleiro.
+    window.location.reload();  // Recarrega a página para reiniciar o jogo
+}

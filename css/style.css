@@ -9,9 +9,10 @@ body {
     font-family: "Cabin", sans-serif;
 }
 
-h1, h2 {
+h1,
+h2 {
     margin: 0;
-    
+
 }
 
 h1 {
@@ -33,7 +34,7 @@ h2 {
     display: flex;
     flex-direction: column;
     gap: 1em;
-    width: 200px; 
+    width: 200px;
 }
 
 .adicional {
@@ -92,13 +93,14 @@ h2 {
 }
 
 #info-display {
-    height: 20px; /* ou ajuste conforme necessário */
+    height: 20px;
 }
 
 
 #info-display.hidden {
     opacity: 0;
 }
+
 path {
     position: relative;
     z-index: -10
@@ -128,6 +130,44 @@ path {
 
 .white {
     fill: #ffffff
-
 }
 
+
+
+.vitoria {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(99, 95, 95, 0.7);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    text-align: center;
+}
+
+.vitoria h1 {
+    font-size: 3rem;
+    margin: 0;
+}
+
+.vitoria p {
+    font-size: 1.5rem;
+}
+
+.vitoria button {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border: 1px solid rgba(52, 52, 207, 0.534);
+}
+
+.vitoria button:hover {
+    transition: 0.5s ease;
+    color: white;
+    background-color: rgba(9, 190, 39, 0.534);
+}

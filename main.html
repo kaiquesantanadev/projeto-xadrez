@@ -11,7 +11,14 @@
 
 <body>
     <div class="jogo">
-        <div id="gameboard"></div>
+        <div id="gameboard">
+            <div class="vitoria" id="vitoria-display" style="display: none;">
+                <h1>Xeque Mate!</h1>
+                <p id="mensagem-vencedor"></p>
+                <button onclick="reiniciarJogo()">Jogar novamente?</button>
+            </div>
+            
+        </div>
         <p id="info-display"></p>
     </div>
     <div class="adicionais">

@@ -126,24 +126,43 @@ function movimentoRei(startId, targetId, tamanho) {
 function isKingInCheck(color) {
     const posicaoRei = Array.from(document.querySelectorAll('.piece')).find(peca => peca.id === 'rei' && peca.firstChild.classList.contains(color)).parentNode.getAttribute('quadrado-id');
     const opponentColor = color === 'white' ? 'black' : 'white';
+
+    // Movimentos do cavalo
     const cavaleiroMoves = [
         Number(posicaoRei) - tamanho * 2 - 1,
         Number(posicaoRei) - tamanho * 2 + 1,
         Number(posicaoRei) - tamanho * 1 - 2,
-        Number(posicaoRei) - tamanho * 1 + 2,
         Number(posicaoRei) + tamanho * 2 - 1,
         Number(posicaoRei) + tamanho * 2 + 1,
-        Number(posicaoRei) + tamanho * 1 - 2,
         Number(posicaoRei) + tamanho * 1 + 2
     ];
 
-    const peaoMoves = [Number(posicaoRei) - tamanho - 1, Number(posicaoRei) - tamanho + 1] 
+    // Movimentos do peão
+    const peaoMoves = [
+        Number(posicaoRei) + tamanho - 1,
+        Number(posicaoRei) + tamanho + 1,
+        Number(posicaoRei) - tamanho - 1,
+        Number(posicaoRei) - tamanho + 1
+    ];
 
+    // Movimentos da torre
+    const torreMoves = [];
+    for (let i = 1; i < 8; i++) {
+        torreMoves.push(Number(posicaoRei) + i * tamanho);  // para baixo
+        torreMoves.push(Number(posicaoRei) - i * tamanho);  // para cima
+        torreMoves.push(Number(posicaoRei) + i);  // para a direita
+        torreMoves.push(Number(posicaoRei) - i);  // para a esquerda
+    }
+
+    // Verificação de xeque pelos movimentos de cavalo, peão e torre
     return cavaleiroMoves.some(move => {
         const targetSquare = document.querySelector(`[quadrado-id="${move}"]`);
         return targetSquare && targetSquare.firstChild && targetSquare.firstChild.id === 'cavalo' && targetSquare.firstChild.firstChild.classList.contains(opponentColor);
     }) || peaoMoves.some(move => {
         const targetSquare = document.querySelector(`[quadrado-id="${move}"]`);
         return targetSquare && targetSquare.firstChild && targetSquare.firstChild.id === 'peao' && targetSquare.firstChild.firstChild.classList.contains(opponentColor);
-    })
+    }) || torreMoves.some(move => {
+        const targetSquare = document.querySelector(`[quadrado-id="${move}"]`);
+        return targetSquare && targetSquare.firstChild && targetSquare.firstChild.id === 'torre' && targetSquare.firstChild.firstChild.classList.contains(opponentColor);
+    });
 }
