@@ -11,7 +11,9 @@ Bem-vindo ao meu projeto de xadrez! Este projeto foi desenvolvido para trazer um
 
 Este projeto é um **jogo de xadrez funcional** desenvolvido para proporcionar uma interface amigável e intuitiva. Nesse projeto, existe funcionalidades incluindo:
 - Movimentos válidos para todas as peças ♔ ♕ ♖ ♗ ♘ ♙
+- Validação de xeque
 - Captura de peças 💥
+- Vitória por captura do rei adversário
 
 Tudo isso foi implementado com **JavaScript**, aproveitando o poder do DOM para manipular o tabuleiro e as peças. A interface foi estilizada com **CSS**, garantindo uma experiência visual agradável e responsiva.
 
@@ -34,13 +36,19 @@ git clone https://github.com/kaiquesantanadev/projetoxadrez.git
 Assim que o repositório estiver clonado, entre no repositório onde o clone foi feito e faça o build da imagem executando o comando abaixo no terminal:
 
 ```bash
-docker build -t projetoxadrez .
+docker build -t xadrez .
 ```
 
 E então, execute um container com essa imagem para enfim rodar a aplicação:
 
 ```bash
-docker run -d -p 8080:80 projetoxadrez:latest
+docker run -d -p 8080:80 xadrez:latest
+```
+
+Ou, caso não queira criar uma imagem local, apenas utilize o comando:
+
+```bash
+docker run -d -p 8080:80 --name xadrez-container kaiquevieira/xadrez:v1
 ```
 
 (Substitua a porta 8080 por uma de sua escolha caso necessário)
