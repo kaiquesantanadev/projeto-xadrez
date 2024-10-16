@@ -7,7 +7,7 @@ function movimentoPeao(startId, targetId, tamanho) {
         (startId - tamanho - 1 === Number(targetId) && document.querySelector(`[quadrado-id="${startId - tamanho - 1}"]`).firstChild) || // Movimento diagonal esquerda
         (startId - tamanho + 1 === Number(targetId) && document.querySelector(`[quadrado-id="${startId - tamanho + 1}"]`).firstChild) // Movimento diagonal direita
     ) {
-        promoverPeao(targetId);
+        // promoverPeao(targetId);
         return true;
     }
     return false;
@@ -163,7 +163,7 @@ function isKingInCheck(color) {
         Number(posicaoRei) - tamanho * 2 - 1,
         Number(posicaoRei) - tamanho * 2 + 1,
         Number(posicaoRei) - tamanho * 1 - 2,
-        Number(posicaoRei) - tamanho * 1 + 2, 
+        Number(posicaoRei) - tamanho * 1 + 2,
         Number(posicaoRei) + tamanho * 2 - 1,
         Number(posicaoRei) + tamanho * 2 + 1,
         Number(posicaoRei) + tamanho * 1 - 2,
@@ -217,6 +217,38 @@ function isKingInCheck(color) {
         Number(posicaoRei) - tamanho - 1
     ];
 
+    const bispoMoves = [];
+    for (let i = 1; i < tamanho; i++) {
+        // Diagonal superior esquerda
+        if (Number(posicaoRei) - tamanho * i - i >= 0 && (Number(posicaoRei) - tamanho * i - i) % tamanho !== tamanho - 1) {
+            bispoMoves.push(Number(posicaoRei) - tamanho * i - i);
+            if (document.querySelector(`[quadrado-id="${Number(posicaoRei) - tamanho * i - i}"]`).firstChild) break;
+        } else break;
+    }
+    for (let i = 1; i < tamanho; i++) {
+        // Diagonal superior direita
+        if (Number(posicaoRei) - tamanho * i + i >= 0 && (Number(posicaoRei) - tamanho * i + i) % tamanho !== 0) {
+            bispoMoves.push(Number(posicaoRei) - tamanho * i + i);
+            if (document.querySelector(`[quadrado-id="${Number(posicaoRei) - tamanho * i + i}"]`).firstChild) break;
+        } else break;
+    }
+    for (let i = 1; i < tamanho; i++) {
+        // Diagonal inferior esquerda
+        if (Number(posicaoRei) + tamanho * i - i < tamanho * tamanho && (Number(posicaoRei) + tamanho * i - i) % tamanho !== tamanho - 1) {
+            bispoMoves.push(Number(posicaoRei) + tamanho * i - i);
+            if (document.querySelector(`[quadrado-id="${Number(posicaoRei) + tamanho * i - i}"]`).firstChild) break;
+        } else break;
+    }
+    for (let i = 1; i < tamanho; i++) {
+        // Diagonal inferior direita
+        if (Number(posicaoRei) + tamanho * i + i < tamanho * tamanho && (Number(posicaoRei) + tamanho * i + i) % tamanho !== 0) {
+            bispoMoves.push(Number(posicaoRei) + tamanho * i + i);
+            if (document.querySelector(`[quadrado-id="${Number(posicaoRei) + tamanho * i + i}"]`).firstChild) break;
+        } else break;
+    }
+
+    const rainhaMoves = [...torreMoves, ...bispoMoves]
+
     // cada some ve se o movimento resulta numa peça inimiga, ou seja, se o cavalomove resulta num cavalo inimigo e blabla
     return cavaloMoves.some(move => {
         const targetSquare = document.querySelector(`[quadrado-id="${move}"]`);
@@ -230,6 +262,12 @@ function isKingInCheck(color) {
     }) || reiMoves.some(move => {
         const targetSquare = document.querySelector(`[quadrado-id="${move}"]`);
         return targetSquare && targetSquare.firstChild && targetSquare.firstChild.id === 'rei' && targetSquare.firstChild.firstChild.classList.contains(opponentColor);
-    });
-;
+    }) || bispoMoves.some(move => {
+        const targetSquare = document.querySelector(`[quadrado-id="${move}"]`);
+        return targetSquare && targetSquare.firstChild && targetSquare.firstChild.id === 'bispo' && targetSquare.firstChild.firstChild.classList.contains(opponentColor);
+    }) || rainhaMoves.some(move => {
+        const targetSquare = document.querySelector(`[quadrado-id="${move}"]`);
+        return targetSquare && targetSquare.firstChild && targetSquare.firstChild.id === 'rainha' && targetSquare.firstChild.firstChild.classList.contains(opponentColor);
+    });;
+    ;
 }

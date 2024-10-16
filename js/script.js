@@ -263,7 +263,7 @@ function touchEnd(e) {
             audioCaptura.play();
             checaVitoria();
             if (isKingInCheck(vezOponente)) {
-                alert(`Xeque no rei de ${jogadores[vezOponente]}!`);
+                alert(`Rei de ${jogadores[vezOponente]} está em xeque!`);
             }
             mudarVez();
             return;
@@ -284,7 +284,7 @@ function touchEnd(e) {
             }
             audioMovimento.play();
             if (isKingInCheck(vezOponente)) {
-                alert(`Xeque no rei de ${jogadores[vezOponente]}!`);
+                alert(`Rei de ${jogadores[vezOponente]} está em xeque!`);
             }
             mudarVez();
             return;
