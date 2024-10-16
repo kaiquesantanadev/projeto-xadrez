@@ -53,7 +53,9 @@ p {
 }
 
 #vezJogador {
-    width: 300px;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
 }
 
 #desistir {
@@ -137,12 +139,13 @@ path {
     background-color: red;
 }
 
-.black {
-    fill: #363636
+.escuras {
+    opacity: 0.5;
+    fill: #292828
 }
 
-.white {
-    fill: #ffffff
+.brancas {
+    fill: #ececec
 }
 
 .vitoria {

@@ -11,6 +11,7 @@
 
 <body>
     <div class="jogo">
+        <p id="vezJogador">É a vez de: <span id="player"></span></p>
         <div id="gameboard">
             <div class="vitoria" id="vitoria-display" style="display: none;">
                 <h1 id="titulo-informacao"></h1>
@@ -27,14 +28,21 @@
                 <h1>Xadrez</h1>
                 <h2>by Kaique</h2>
             </div>
-            <p id="vezJogador">É a vez de: <span id="player"></span></p>
         </div>
         <button class="adicional" id="desistir">Desistir</button>
         <button class="adicional" id="empate">Propor empate</button>
     </div>
-    <script src="js/movimentos.js"></script>
     <script src="js/pecas.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/renderizarTabela.js"></script>
+    <script src="js/girarTabela.js"></script>
+    <script src="js/pecas/movimentoPeao.js"></script>
+    <script src="js/pecas/movimentoCavalo.js"></script>
+    <script src="js/pecas/movimentoBispo.js"></script>
+    <script src="js/pecas/movimentoTorre.js"></script>
+    <script src="js/pecas/movimentoRei.js"></script>
+    <script src="js/pecas/analisaXeque.js"></script>
+    <script src="js/botoesInteracao.js"></script>
+    <script src="js/drags.js"></script>
 </body>
 
 </html>
