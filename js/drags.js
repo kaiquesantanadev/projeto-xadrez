@@ -126,32 +126,3 @@ function checaValido(target) {
     }
 
 }
-
-function checaVitoria() {
-    const reis = Array.from(document.querySelectorAll('#rei'));
-    const vitoriaDisplay = document.getElementById('vitoria-display');
-    const tituloInformacao = document.getElementById('titulo-informacao')
-    const mensagemVencedor = document.getElementById('mensagem-vencedor');
-    
-    // Checa se o rei branco foi capturado
-    if (!reis.some(rei => rei.firstChild.classList.contains('brancas'))) {
-        tituloInformacao.innerHTML = `Vitória!`;
-        mensagemVencedor.innerHTML = `${jogadores.escuras} venceu!`;
-        vitoriaDisplay.style.display = 'flex';  
-        desabilitarPecas();
-        audioVitoria.play()
-        return;
-    }
-    
-    // Checa se o rei preto foi capturado
-    if (!reis.some(rei => rei.firstChild.classList.contains('escuras'))) {
-        tituloInformacao.innerHTML = `Vitória!`;
-
-        mensagemVencedor.innerHTML = `${jogadores.brancas} venceu!`;
-        vitoriaDisplay.style.display = 'flex';
-        desabilitarPecas();
-        audioVitoria.play()
-        return;
-    }
-}
-

@@ -4,48 +4,45 @@ function movimentoBispo(startId, targetId, tamanho) {
         if (startId - tamanho * i + i === Number(targetId)) {
             for (let j = 1; j < i; j++) {
                 if (document.querySelector(`[quadrado-id="${startId - tamanho * j + j}"]`).firstChild) {
-                    return false; // Se houver uma peça no caminho, o movimento é inválido
+                    return false; 
                 }
             }
-            return true; // Movimento válido
+            return true; 
         }
     }
 
-    // Movimento diagonal para cima-esquerda
     for (let i = 1; i < tamanho; i++) {
         if (startId - tamanho * i - i === Number(targetId)) {
             for (let j = 1; j < i; j++) {
                 if (document.querySelector(`[quadrado-id="${startId - tamanho * j - j}"]`).firstChild) {
-                    return false; // Se houver uma peça no caminho, o movimento é inválido
+                    return false; 
                 }
             }
-            return true; // Movimento válido
+            return true; 
         }
     }
 
-    // Movimento diagonal para baixo-direita
     for (let i = 1; i < tamanho; i++) {
         if (startId + tamanho * i + i === Number(targetId)) {
             for (let j = 1; j < i; j++) {
                 if (document.querySelector(`[quadrado-id="${startId + tamanho * j + j}"]`).firstChild) {
-                    return false; // Se houver uma peça no caminho, o movimento é inválido
+                    return false; 
                 }
             }
-            return true; // Movimento válido
+            return true; 
         }
     }
 
-    // Movimento diagonal para baixo-esquerda
     for (let i = 1; i < tamanho; i++) {
         if (startId + tamanho * i - i === Number(targetId)) {
             for (let j = 1; j < i; j++) {
                 if (document.querySelector(`[quadrado-id="${startId + tamanho * j - j}"]`).firstChild) {
-                    return false; // Se houver uma peça no caminho, o movimento é inválido
+                    return false; 
                 }
             }
-            return true; // Movimento válido
+            return true; 
         }
     }
 
-    return false; // Se não for um movimento diagonal válido, retorna falso
+    return false;
 }
