@@ -14,26 +14,26 @@ function dragStart(e) {
 }
 
 function dragOver(e) {
-    e.preventDefault() // evitar bugs de disparar o evento de drag over a cada lugar q passo
+    e.preventDefault() 
 }
 
 function dragDrop(e) {
-    e.stopPropagation(); // Evita bugs do drag and drop não ser tratado no lugar específico
+    e.stopPropagation(); 
     const valid = checaValido(e.target);
-    const vezCorreta = elementoArrastado.firstChild.classList.contains(vezJogador); // Verifica se a peça mexida tem a classe correta
+    const vezCorreta = elementoArrastado.firstChild.classList.contains(vezJogador); 
     const vezOponente = vezJogador === "brancas" ? "escuras" : "brancas";
-    const temPeca = e.target.classList.contains('piece'); // Verifica se a casa atual possui alguma peça nela
+    const temPeca = e.target.classList.contains('piece'); 
     const temPecaOponente = e.target.firstChild?.classList.contains(vezOponente);
-    const draggedPieceId = elementoArrastado.id; // Verifica se a peça é o rei
+    const draggedPieceId = elementoArrastado.id;
 
     const origem = document.querySelector(`[quadrado-id='${posicaoInicialId}']`);
 
     if (vezCorreta) {
         if (temPecaOponente && valid) {
-            e.target.parentNode.append(elementoArrastado); // Colocando na casa dropada a peça que foi arrastada
+            e.target.parentNode.append(elementoArrastado); 
             if (draggedPieceId === 'rei' && isKingInCheck(vezJogador)) {
                 alert('Não é possível mover o rei para essa posição, ele ficaria em xeque!');
-                origem.append(elementoArrastado); // Volta o rei para sua posição original
+                origem.append(elementoArrastado); 
                 return;
             }
             e.target.remove();
@@ -45,18 +45,18 @@ function dragDrop(e) {
             mudarVez();
             return;
         }
-        if (temPeca && !temPecaOponente) { // Verifica se a peça que foi jogada foi jogada pra um local que existe uma peça e que é do próprio time
+        if (temPeca && !temPecaOponente) { 
             audioNegacao.play();
             infoDisplay.textContent = "Não é possível eliminar sua própria peça!";
             setTimeout(() => infoDisplay.textContent = '', 2500);
             return;
         }
-        if (valid) { // Movimentação pra uma casa que não tem oponente
+        if (valid) {
             e.target.append(elementoArrastado);
             checaVitoria()
             if (draggedPieceId === 'rei' && isKingInCheck(vezJogador, e.target.getAttribute('quadrado-id'))) {
                 alert('Não é possível mover o rei para essa posição, ele ficaria em xeque!');
-                origem.append(elementoArrastado); // Volta o rei para sua posição original
+                origem.append(elementoArrastado);
                 return;
             }
             audioMovimento.play();
