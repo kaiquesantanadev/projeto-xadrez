@@ -13,6 +13,7 @@ Este projeto é um **jogo de xadrez funcional** desenvolvido para proporcionar u
 - Movimentos válidos para todas as peças ♔ ♕ ♖ ♗ ♘ ♙
 - Validação de xeque
 - Captura de peças 💥
+- Evolução de peão
 - Vitória por captura do rei adversário
 
 Tudo isso foi implementado com **JavaScript**, aproveitando o poder do DOM para manipular o tabuleiro e as peças. A interface foi estilizada com **CSS**, garantindo uma experiência visual agradável e responsiva.
