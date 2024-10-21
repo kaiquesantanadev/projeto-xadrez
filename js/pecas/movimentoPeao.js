@@ -1,10 +1,15 @@
 function movimentoPeao(startId, targetId, tamanho) {
     const linhaInicial = [48, 49, 50, 51, 52, 53, 54, 55];
     const linhaFinal = [0, 1, 2, 3, 4, 5, 6, 7];
-    
+    const pecaArrastada = document.querySelector(`[quadrado-id="${startId}"] .piece`);
+
+    if (!pecaArrastada || !pecaArrastada.firstChild.classList.contains(vezJogador)) {
+        return false;
+    }
+
     if (
         (linhaInicial.includes(startId) && startId - tamanho * 2 === Number(targetId) && !document.querySelector(`[quadrado-id="${startId - tamanho}"]`).firstChild) ||
-        (startId - tamanho === Number(targetId)) ||
+        (startId - tamanho === Number(targetId)) && !document.querySelector(`[quadrado-id="${startId - tamanho}"]`).firstChild ||
         (startId - tamanho - 1 === Number(targetId) && document.querySelector(`[quadrado-id="${startId - tamanho - 1}"]`).firstChild) || // Movimento diagonal esquerda
         (startId - tamanho + 1 === Number(targetId) && document.querySelector(`[quadrado-id="${startId - tamanho + 1}"]`).firstChild) // Movimento diagonal direita
     ) {
@@ -34,10 +39,12 @@ function movimentoPeao(startId, targetId, tamanho) {
             const targetSquare = document.querySelector(`[quadrado-id="${targetId}"]`);
             targetSquare.innerHTML = pecaHtml;
             targetSquare.firstChild.firstChild.classList.add(vezJogador);
+            checaVitoria();
             mudarVez()
             return true
+        } else {
+            return true;
         }
-        return true;
     }
     return false;
 }

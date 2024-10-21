@@ -6,6 +6,9 @@ allQuadrados.forEach((quadrado) => {
     quadrado.addEventListener('dragstart', dragStart)
     quadrado.addEventListener('dragover', dragOver)
     quadrado.addEventListener('drop', dragDrop)
+    quadrado.addEventListener('touchstart', touchStart);
+    quadrado.addEventListener('touchmove', touchMove);
+    quadrado.addEventListener('touchend', touchEnd);
 })
 
 function dragStart(e) {
@@ -14,15 +17,15 @@ function dragStart(e) {
 }
 
 function dragOver(e) {
-    e.preventDefault() 
+    e.preventDefault()
 }
 
 function dragDrop(e) {
-    e.stopPropagation(); 
+    e.stopPropagation();
     const valid = checaValido(e.target);
-    const vezCorreta = elementoArrastado.firstChild.classList.contains(vezJogador); 
+    const vezCorreta = elementoArrastado.firstChild.classList.contains(vezJogador);
     const vezOponente = vezJogador === "brancas" ? "escuras" : "brancas";
-    const temPeca = e.target.classList.contains('piece'); 
+    const temPeca = e.target.classList.contains('piece');
     const temPecaOponente = e.target.firstChild?.classList.contains(vezOponente);
     const draggedPieceId = elementoArrastado.id;
 
@@ -30,10 +33,10 @@ function dragDrop(e) {
 
     if (vezCorreta) {
         if (temPecaOponente && valid) {
-            e.target.parentNode.append(elementoArrastado); 
+            e.target.parentNode.append(elementoArrastado);
             if (draggedPieceId === 'rei' && isKingInCheck(vezJogador)) {
                 alert('Não é possível mover o rei para essa posição, ele ficaria em xeque!');
-                origem.append(elementoArrastado); 
+                origem.append(elementoArrastado);
                 return;
             }
             e.target.remove();
@@ -45,7 +48,7 @@ function dragDrop(e) {
             mudarVez();
             return;
         }
-        if (temPeca && !temPecaOponente) { 
+        if (temPeca && !temPecaOponente) {
             audioNegacao.play();
             infoDisplay.textContent = "Não é possível eliminar sua própria peça!";
             setTimeout(() => infoDisplay.textContent = '', 2500);
