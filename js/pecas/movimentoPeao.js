@@ -9,7 +9,7 @@ function movimentoPeao(startId, targetId, tamanho) {
         (startId - tamanho + 1 === Number(targetId) && document.querySelector(`[quadrado-id="${startId - tamanho + 1}"]`).firstChild) // Movimento diagonal direita
     ) {
         if (linhaFinal.includes(Number(targetId))) {
-            const novaPeca = prompt("Escolha a peça para promoção (rei, rainha, torre, bispo, cavalo, peao):").toLowerCase();
+            const novaPeca = prompt("Escolha a peça para promoção (rainha, torre, bispo, cavalo):").toLowerCase();
             let pecaHtml = '';
             switch (novaPeca) {
                 case 'rainha':
@@ -25,6 +25,7 @@ function movimentoPeao(startId, targetId, tamanho) {
                     pecaHtml = cavalo;
                     break;
                 default:
+                    alert('Peça não informada de forma correta, evoluindo peça para cavalo como padrão.')
                     pecaHtml = cavalo;
                     break;
             }
@@ -34,6 +35,7 @@ function movimentoPeao(startId, targetId, tamanho) {
             targetSquare.innerHTML = pecaHtml;
             targetSquare.firstChild.firstChild.classList.add(vezJogador);
             mudarVez()
+            return true
         }
         return true;
     }
